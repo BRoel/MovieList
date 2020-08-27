@@ -1,4 +1,9 @@
 class ListsController < ApplicationController
+    
+    def index
+        @lists = List.all
+    end
+    
     def new
         @list = List.new
     end
@@ -10,6 +15,14 @@ class ListsController < ApplicationController
         else
             render :new
         end
+    end
+
+    def edit
+        @list = List.find_by(id: params[:id])
+    end
+
+    def update
+        @list = List.find_by(id: params[:id])
     end
 
     private
