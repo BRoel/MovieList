@@ -5,6 +5,14 @@ class SessionsController < ApplicationController
         redirect_to root_path
     end
 
+    def home
+        if !logged_in?
+            root_path
+        else
+            redirect_to lists_path
+        end
+    end
+
     def create
         user = User.find_by(username: params[:user][:username])
         if user && user.authenticate(params[:user][:password])
