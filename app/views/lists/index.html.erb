@@ -1,0 +1,9 @@
+<% if @lists.blank? %>
+
+    <h2>No lists yet. Write a list <%= link_to "here", new_list_path%></h2>
+
+<% else %>
+    <% @lists.each do |list| %>
+        <div><h5><%= link_to list.name, list_path(list) %></h5></div>
+    <% end %>
+<% end %>

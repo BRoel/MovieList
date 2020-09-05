@@ -1,0 +1,11 @@
+<h1><%=@list.name%></h1>
+<h2>By: <%=link_to @list.user.username, user_path(@list.user)%> </h2>
+
+<h3>Movies:</h3>
+
+<p><%= link_to 'Add a new Movie', new_list_movie_path(@list)%></p>
+
+<% @list.movies.each do |m|%>
+    <li><%= m.list.name%><%= link_to m.title, movie_path(m)%></li>
+<% end %>
+

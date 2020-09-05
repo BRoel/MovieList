@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-    
+    before_action :redirect_if_not_logged_in
     def index
         @lists = List.all
     end
@@ -15,6 +15,11 @@ class ListsController < ApplicationController
         else
             render :new
         end
+    end
+
+    def show
+        @list = List.find_by_id(params[:id])
+        redirect_to lists_path if !@list
     end
 
     def edit
