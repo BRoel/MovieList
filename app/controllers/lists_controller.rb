@@ -18,6 +18,7 @@ class ListsController < ApplicationController
     end
 
     def show
+        binding.pry
         @list = List.find_by_id(params[:id])
         redirect_to lists_path if !@list
     end
