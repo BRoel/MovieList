@@ -18,17 +18,23 @@ class ListsController < ApplicationController
     end
 
     def show
-        binding.pry
         @list = List.find_by_id(params[:id])
         redirect_to lists_path if !@list
     end
 
     def edit
-        @list = List.find_by(id: params[:id])
+        @list = List.find_by_id(params[:id])
+        redirect_to lists_path if !@list || @list.user != current_user
     end
-
+    
     def update
         @list = List.find_by(id: params[:id])
+        redirect_to lists_path if !@list || @list.user != current_user
+        if @list.update(list_params)
+          redirect_to list_path(@list)
+        else
+          render :edit
+        end
     end
 
     private
