@@ -1,5 +1,13 @@
 class MoviesController < ApplicationController
     
+    def index
+        if params[:list_id] && @list = List.find_by_id(params[:list_id])
+            @movies = @list.movies
+        else 
+            @movies = Movie.all
+        end
+    end
+
     def new
         if params[:list_id] && @list = List.find_by_id(params[:list_id])
             @movie = @list.movies.build
@@ -18,6 +26,11 @@ class MoviesController < ApplicationController
         else
             render :new
         end
+    end
+
+    def show
+        @movie = Movie.find_by_id(params[:id])
+        redirect_to movies_path if !@movie
     end
 
     def edit

@@ -1,0 +1,11 @@
+<h1><%= @list.name %></h1>
+
+<% if @comments.blank? %>
+
+    <h2>No comments yet. Write a comment <%= link_to "here", new_comment_path%></h2>
+
+<% else %>
+    <% @comments.each do |comment| %>
+        <div><h5><%= link_to comment.name, comment_path(comment) %></h5></div>
+    <% end %>
+<% end %>

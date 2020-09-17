@@ -1,0 +1,9 @@
+<% if @movies.blank? %>
+
+    <h2>No movies yet. Write a movie <%= link_to "here", new_movie_path%></h2>
+
+<% else %>
+    <% @movies.each do |movie| %>
+        <div><h5><%= link_to movie.title , movie_path(movie) %></h5></div>
+    <% end %>
+<% end %>

@@ -1,10 +1,26 @@
 <h1><%=@list.name%></h1>
-<h2>By: <%=link_to @list.user.username, user_path(@list.user)%> </h2>
+<h5>By: <%=link_to @list.user.username, user_path(@list.user)%> </h5>
 
 <h3>Movies:</h3>
 
-<p><%= link_to 'Add a new Movie', new_list_movie_path(@list)%></p>
+<% @list.comments.each do |c|%>
+    <li><%= c.movie.title%><%= link_to c.content, list_path(c)%><%= link_to "Delete", comment_path, :method => :delete %></li>
+<% end %>
 
-<% @list.movies.each do |m|%>
-    <li><%= m.list.name%><%= link_to m.title, movie_path(m)%></li>
+<%= form_for(@comment) do |f| %> 
+    
+    <%= f.hidden_field :list_id, :value => @list.id %>
+    
+    <%= f.label :movie %>
+    <%= f.collection_select :movie_id, Movie.all, :id, :title %>
+  
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  
+    <%= f.submit %>
+  
+<% end %>
+
+<% if @list.user == current_user %>
+<p><%= link_to "Edit List", edit_list_path(@list)%>|<%= link_to "Delete", @list, :method => :delete %></p>
 <% end %>
