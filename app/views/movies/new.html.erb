@@ -1,7 +1,7 @@
 <% if @list %>
 <h1>New Movie for <%= @list.name %></h1>
 <% else %>
-<h1>New Movie</h1>
+<h1>Is your movie not availble to add to a list? Please add here.</h1>
 <% end %>
 
 <%= form_for([@list,@movie]) do |f| %>
