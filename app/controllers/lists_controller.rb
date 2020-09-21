@@ -9,7 +9,6 @@ class ListsController < ApplicationController
     end
     
     def create
-        binding.pry
         @list = current_user.lists.build(list_params)
         if @list.save
             redirect_to lists_path
