@@ -1,1 +1,3 @@
 <h1><%= @movie.title %></h1>
+
+<p><%= link_to "Edit movie", edit_movie_path(@movie)%>|<%= link_to "Delete", @movie, :method => :delete %></p>
