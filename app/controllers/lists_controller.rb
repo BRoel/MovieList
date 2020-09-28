@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
     before_action :redirect_if_not_logged_in
     def index
-        @lists = List.all
+        @lists = List.alpha
     end
     
     def new
