@@ -4,5 +4,5 @@ class List < ApplicationRecord
   has_many :movies, through: :comments
 
   scope :alpha, -> { order(:name) }
-
+  validates :name, presence: true
 end
