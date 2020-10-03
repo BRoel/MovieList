@@ -1,8 +1,6 @@
-<% if @list %>
-<h1>New Movie for <%= @list.name %></h1>
-<% else %>
 <h1>Is your movie not availble to add to a list? Please add here.</h1>
-<% end %>
+
+<%= render partial: "layouts/errors", locals: {object: @movie} %>
 
 <%= form_for([@list,@movie]) do |f| %>
 
@@ -10,7 +8,7 @@
     <%= f.text_field :title %>
     <br>
     <%= f.label :rating %>
-    <%= f.select :rating, ['G', 'PG', 'PG-13', 'R', 'NR']%>
+    <%= f.select :rating, ['','G', 'PG', 'PG-13', 'R', 'NR']%>
     <br>
     <%= f.label :release_date %>
     <%= f.date_field :release_date %>

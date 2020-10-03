@@ -19,15 +19,14 @@ class MoviesController < ApplicationController
     end
     
     def create
-        list = list_movie
-        @movie = list.movies.build(movie_params)
+        @movie = Movie.new(movie_params)
         if @movie.save
-            redirect_to list
+            redirect_to movies_path
         else
             render :new
         end
     end
-
+    
     def show
         @movie = Movie.find_by_id(params[:id])
         redirect_to movies_path if !@movie
