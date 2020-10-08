@@ -1,0 +1,22 @@
+<h1>Edit <%= @movie.title%>!</h1>
+<%= render partial: "layouts/errors", locals: {object: @movie} %>
+
+<%= form_for([@list,@movie]) do |f| %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label :rating %>
+    <%= f.select :rating, ['','G', 'PG', 'PG-13', 'R', 'NR']%>
+    <br>
+    <%= f.label :release_date %>
+    <%= f.date_field :release_date %>
+    <br>
+    <%= f.label :genre %>
+    <%= f.text_field :genre %>
+    <br>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <br>
+    <%= f.submit %>
+<% end %>
