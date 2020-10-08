@@ -6,7 +6,7 @@
 <h3>Movies:</h3>
 
 <% @list.comments.each do |c|%>
-    <li><%= c.movie.title %>: <%= c.content %> <%= link_to "Delete", comment_path, :method => :delete %></li>
+    <li><%= c.movie.title %>: <%= c.content %> <%= link_to "Delete", comment_path(:id => c.id), :method => :delete %></li>
 <% end %>
 
 <%= form_for(@comment) do |f| %> 
@@ -14,7 +14,7 @@
     <%= f.hidden_field :list_id, :value => @list.id %>
     
     <%= f.label :movie %>
-    <%= f.collection_select :movie_id, Movie.all, :id, :title %>
+    <%= f.collection_select :movie_id, Movie.all, :id, :title, {:prompt => 'Please select a Movie'} %>
   
     <%= f.label :content %>
     <%= f.text_area :content %>

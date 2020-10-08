@@ -9,13 +9,7 @@ class MoviesController < ApplicationController
     end
 
     def new
-        if params[:list_id] && @list = List.find_by_id(params[:list_id])
-            @movie = @list.movies.build
-        else 
-            @error = "That list doesn't exist" if params[:list_id]
-            @movie = Movie.new
-            #I want to remove this possibility at worst keep error coding
-        end
+        @movie = Movie.new
     end
     
     def create

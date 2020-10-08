@@ -14,21 +14,15 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to list_path(id: comment_params[:list_id])
         else
-            render :new
+            redirect_to list_path(id: comment_params[:list_id])
         end
-    end
-
-    def edit
-    end
-
-    def update
     end
     
     def destroy
         # binding.pry
-        @comment = Comment.find_by_id(params.merge(user_id: current_user.id))
+        @comment = Comment.find_by_id(params[:id])
         if @comment.destroy
-            redirect_to list_path(id: comment_params[:list_id])
+            redirect_to list_path(id: @comment.list_id)
         else
             binding.pry
         end
