@@ -6,9 +6,11 @@
 <h3>Movies:</h3>
 
 <% @list.comments.each do |c|%>
-    <li><%= c.movie.title %>: <%= c.content %> <%= link_to "Delete", comment_path(:id => c.id), :method => :delete %></li>
+    <li><%= c.movie.title %>: <%= c.content %><% if @list.user == current_user %><%= link_to "Delete", comment_path(:id => c.id), :method => :delete %></li>
+<% end %>
 <% end %>
 
+<% if @list.user == current_user %>
 <%= form_for(@comment) do |f| %> 
     
     <%= f.hidden_field :list_id, :value => @list.id %>
@@ -23,6 +25,6 @@
   
 <% end %>
 
-<% if @list.user == current_user %>
+
 <p><%= link_to "Edit List", edit_list_path(@list)%>|<%= link_to "Delete", @list, :method => :delete %></p>
 <% end %>
