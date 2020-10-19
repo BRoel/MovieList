@@ -36,7 +36,8 @@
 
     <div>
       <% if logged_in? %>
-      <%=link_to "Logout", logout_path, method:"delete" %>
+      <%=link_to "Logout", logout_path, method:"delete" %> |
+      <%=link_to "My Lists", user_lists_path(current_user) %> 
       <% else %>
       <%=link_to "Sign Up", signup_path %> |
       <%=link_to "Log In", login_path %> |
