@@ -4,5 +4,6 @@ class List < ApplicationRecord
   has_many :movies, through: :comments
 
   scope :alpha, -> { order(:name) }
+  scope :search, ->(params) { where("(name) LIKE ?", "%#{params}%")}
   validates :name, presence: true
 end

@@ -1,3 +1,8 @@
+<%= form_tag("/lists", method: "get") do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search") %>
+  <% end %>
 <% if @lists.blank? %>
 
     <h2>No lists yet. Write a list <%= link_to "here", new_list_path%></h2>

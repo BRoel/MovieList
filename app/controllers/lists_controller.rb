@@ -11,6 +11,9 @@ class ListsController < ApplicationController
            @error = "This user doesn't exist" if params[:user_id]
            @lists = List.all.alpha
         end
+        if !params[:q].empty?
+            @lists = List.search(params[:q].downcase)
+        end
     end
     
     def new
